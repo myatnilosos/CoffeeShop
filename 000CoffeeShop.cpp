@@ -11,7 +11,7 @@ double deposit_money(double cash);
 double customer_balance_adding(double cash);
 void coffee_making(int coffee);
 bool if_PIN(int pin);
-void service_menu();
+void service_menu(int machineBalance, int cups);
 int cups_adding(int cups);
 
 int main()
@@ -66,18 +66,26 @@ int main()
 			cout << "    * * * *" << endl;
 			cin >> pin;
 			if (if_PIN(pin)){
-				service_menu();
-				cout << endl;
-				cin >> serviceMenuChoice;
-				if(serviceMenuChoice == 1){
-					cups += cups_adding(cups);
-				}
-				else if (serviceMenuChoice == 2){
-					cout << machineBalance << "BYN were given away";
-					machineBalance -= machineBalance;
-				}
-				else if (serviceMenuChoice == 3){
+				while (true){
+					service_menu(machineBalance, cups);
 					cout << endl;
+					cin >> serviceMenuChoice;
+					if(serviceMenuChoice == 1){
+						cups += cups_adding(cups);
+						service_menu(machineBalance, cups);
+						cout << endl;
+						cin >> serviceMenuChoice;
+					}
+					else if (serviceMenuChoice == 2){
+						cout << machineBalance << "BYN were given away";
+						machineBalance -= machineBalance;
+						service_menu(machineBalance, cups);
+						cout << endl;
+						cin >> serviceMenuChoice;
+					}
+					else if (serviceMenuChoice == 3){
+						break;
+					}
 				}
 			}
 			else {
@@ -112,7 +120,7 @@ bool if_PIN(int pin)
 {
 	return true;
 }
-void service_menu()
+void service_menu(int machineBalance, int cups)
 {
 	cout << "machine balance, cups, 1, 2, 3";
 }
