@@ -16,24 +16,23 @@ int cups_adding(int cups);
 
 int main()
 {
-	int cups = 7, pin = 0;
+	int cups = 0, pin = 0;
 	double customerBalance = 0, machineBalance = 0;
 	double cash = 0; 
 	int mainMenuChoice = 0, serviceMenuChoice = 0;
 	
   	cout << "Welcome to our CoffeeShop!" << endl << endl;
 	  	
-	show_main_menu();
-	cout << endl;
-	cin >> mainMenuChoice; 
+ 
 
-	while(true){	
-		if (cups == 0){
-			if (mainMenuChoice == 1 or mainMenuChoice == 2 or mainMenuChoice == 3 or mainMenuChoice == 4){
-				cout << "We are sorry but unfortunately there are no cups left";
-			}
+	while(true){
+		show_main_menu();
+		cout << endl;
+		cin >> mainMenuChoice;
+		if (cups == 0 and (mainMenuChoice == 1 or mainMenuChoice == 2 or mainMenuChoice == 3 or mainMenuChoice == 4)){
+				cout << "We are sorry but unfortunately there are no cups left" << endl;
 		}
-		else {
+		else if (cups > 0) {
 			if (mainMenuChoice == 1){
 				customerBalance += customer_balance_adding(cash);
 			}
@@ -61,6 +60,7 @@ int main()
 					coffee_making(mainMenuChoice);
 				}		
 			}
+		}
 		else if (mainMenuChoice == 5){
 			cout << "Please input PIN" << endl;
 			cout << "    * * * *" << endl;
@@ -85,6 +85,9 @@ int main()
 				break;
 			}
 		}
+		else {
+			cout << "Please enter [1...5]" << endl;
+		}
 	}
 	return 0;
 }
@@ -105,7 +108,7 @@ void coffee_making(int coffee)
 {
 	cout << "Here is your coffee";
 }
-bool if_PIN()
+bool if_PIN(int pin)
 {
 	return true;
 }
