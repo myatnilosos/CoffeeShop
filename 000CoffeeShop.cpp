@@ -33,10 +33,12 @@ int main()
 		else if (cups > 0) {
 			if (mainMenuChoice == 1){
 				customerBalance += customer_balance_adding();
+				machineBalance += customer_balance_adding();
 			}
 			else if (mainMenuChoice == 2){
 				if (customerBalance < ESPRESSO){
-					customerBalance += customer_balance_adding();				
+					customerBalance += customer_balance_adding();		
+					machineBalance += customer_balance_adding();		
 				}
 				else {
 					coffee_making(mainMenuChoice);
@@ -45,7 +47,8 @@ int main()
 			}
 			else if (mainMenuChoice == 3){
 				if (customerBalance < CAPPUCCINO){
-					customerBalance += customer_balance_adding();					
+					customerBalance += customer_balance_adding();	
+					machineBalance += customer_balance_adding();				
 				}
 				else {
 					coffee_making(mainMenuChoice);
@@ -54,7 +57,8 @@ int main()
 			}	
 			else if (mainMenuChoice == 4){
 				if (customerBalance < LATTE){
-					customerBalance += customer_balance_adding();					
+					customerBalance += customer_balance_adding();	
+					machineBalance += customer_balance_adding();				
 				}
 				else {
 					coffee_making(mainMenuChoice);
