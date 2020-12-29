@@ -18,11 +18,10 @@ int main()
 	int cups = 0, pin = 0;
 	double customerBalance = 0, machineBalance = 0;
 	double cash = 0; 
-	int mainMenuChoice = 0, serviceMenuChoice = 0;
-	
+	int mainMenuChoice = 0, pinMenuChoice = 0, serviceMenuChoice = 0;
+		
   	cout << "Welcome to our CoffeeShop!" << endl << endl;
-	  	
- 
+	  	 
 
 	while(true){
 		show_main_menu(customerBalance);
@@ -64,35 +63,47 @@ int main()
 			}
 		}
 		else if (mainMenuChoice == 5){
-			cout << "Please input PIN" << endl;
-			cout << "    * * * *" << endl;
-			cin >> pin;
-			if (if_PIN(pin)){
-				while (true){
-					service_menu(machineBalance, cups);
-					cout << endl;
-					cin >> serviceMenuChoice;
-					if(serviceMenuChoice == 1){
-						cups += cups_adding(cups);
-						service_menu(machineBalance, cups);
-						cout << endl;
-						cin >> serviceMenuChoice;
+			cout << "1 - PIN input" << endl;
+			cout << "2 - Back to Main menu" << endl;
+			cin >> pinMenuChoice;
+			while (true){
+				if (pinMenuChoice == 1){
+				cin >> pin;
+					if (if_PIN(pin)){
+						while (true){
+							service_menu(machineBalance, cups);
+							cout << endl;
+							cin >> serviceMenuChoice;
+							if(serviceMenuChoice == 1){
+								cups += cups_adding(cups);
+								service_menu(machineBalance, cups);
+								cout << endl;
+								cin >> serviceMenuChoice;
+							}
+							else if (serviceMenuChoice == 2){
+								cout << machineBalance << "BYN were given away";
+								machineBalance -= machineBalance;
+								service_menu(machineBalance, cups);
+								cout << endl;
+								cin >> serviceMenuChoice;
+							}
+							else if (serviceMenuChoice == 3){
+								break;
+							}
+						}
+					break;
 					}
-					else if (serviceMenuChoice == 2){
-						cout << machineBalance << "BYN were given away";
-						machineBalance -= machineBalance;
-						service_menu(machineBalance, cups);
-						cout << endl;
-						cin >> serviceMenuChoice;
-					}
-					else if (serviceMenuChoice == 3){
-						break;
+					else {
+						cout << "The machine is blocked";
+						return -1;
 					}
 				}
-			}
-			else {
-				cout << "The machine is blocked";
-				break;
+				else if (pinMenuChoice == 2){
+					break;
+				} 
+				else {
+					cout << endl;
+				}
 			}
 		}
 		else {
@@ -114,6 +125,7 @@ void coffee_making(int coffee)
 {
 	cout << "Here is your coffee";
 }
+
 bool if_PIN(int pin)
 {
 	return true;
