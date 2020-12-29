@@ -119,27 +119,33 @@ int main()
 
 void show_main_menu(int customerBalance)
 {
+	//Главное меню автомата - инфа о балансе и кнопки для выбора
 	cout << "balance, 1, 2, 3, 4, 5" << endl;
 }
 double customer_balance_adding()
 {
+	// Плиз, внесите бабло и кнопки для выбора монет
 	return 2;
 }
 void coffee_making(int coffee)
 {
+	// Нате берите ваш кофе - название кофе в зависимости от int coffee
 	cout << "Here is your coffee";
 }
 
 bool if_PIN(int pin)
 {
+	//Проверка на правильность пинкода
 	return true;
 }
 void service_menu(int machineBalance, int cups)
 {
+	//Сервисное меню: баланс автомата, стаканчики и кнопки для выбора действий
 	cout << "machine balance, cups, 1, 2, 3";
 }
 int cups_adding(int cups)
 {
+	//добавление стаканчиков
 	return 3;
 }
 
