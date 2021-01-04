@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void showMainMenu(int customerBalance);
+void showMainMenu(double customerBalance);
 double customerBalanceAdding();
 void coffeeMaking(string coffee);
 bool IsPIN(int pin);
@@ -16,31 +16,34 @@ int cupsAdding(int cups);
 
 int main()
 {
-	int cups = 1, pin = 0;
-	double customerBalance = 5, machineBalance = 0;
-	double cash = 0;
+	int cups = 7, pin = 0;
+	double customerBalance = 0.0, machineBalance = 0.0, balanceAdding = 0.0;
+	double cash = 0.0;
 	int mainMenuChoice = 0, pinMenuChoice = 0, serviceMenuChoice = 0;
 	string coffee = "";
 
-	cout << "Welcome to our CoffeeShop!" << endl << endl;
+	cout << "Welcome to our CoffeeShop!" << endl;
 
 
 	while (true) {
-		showMainMenu(customerBalance);
 		cout << endl;
-		cin >> mainMenuChoice;
+		showMainMenu(customerBalance);
+		cin >> mainMenuChoice; 
+		cout << endl;
 		if (cups == 0 and (mainMenuChoice == 1 or mainMenuChoice == 2 or mainMenuChoice == 3 or mainMenuChoice == 4)) {
 			cout << "We are sorry but unfortunately there are no cups left" << endl;
 		}
-		else if (cups > 0) {
+		else if (cups > 0 and (mainMenuChoice == 1 or mainMenuChoice == 2 or mainMenuChoice == 3 or mainMenuChoice == 4)) {
 			if (mainMenuChoice == 1) {
-				customerBalance += customerBalanceAdding();
-				machineBalance += customerBalance;
+				balanceAdding = customerBalanceAdding();
+				customerBalance += balanceAdding;
+				machineBalance += balanceAdding;
 			}
 			else if (mainMenuChoice == 2) {
 				if (customerBalance < ESPRESSO) {
-					customerBalance += customerBalanceAdding();
-					machineBalance += customerBalance;
+					balanceAdding = customerBalanceAdding();
+					customerBalance += balanceAdding;
+					machineBalance += balanceAdding;
 					cups--;
 				}
 				else {
@@ -52,8 +55,9 @@ int main()
 			}
 			else if (mainMenuChoice == 3) {
 				if (customerBalance < CAPPUCCINO) {
-					customerBalance += customerBalanceAdding();
-					machineBalance += customerBalance;
+					balanceAdding = customerBalanceAdding();
+					customerBalance += balanceAdding;
+					machineBalance += balanceAdding;
 				}
 				else {
 					coffee = "Cappuccino";
@@ -64,8 +68,9 @@ int main()
 			}
 			else if (mainMenuChoice == 4) {
 				if (customerBalance < LATTE) {
-					customerBalance += customerBalanceAdding();
-					machineBalance += customerBalance;
+					balanceAdding = customerBalanceAdding();
+					customerBalance += balanceAdding;
+					machineBalance += balanceAdding;
 				}
 				else {
 					coffee = "Latte";
@@ -75,7 +80,7 @@ int main()
 				}
 			}
 		}
-		else if (mainMenuChoice == 5 && cups != -1) {
+		else if (mainMenuChoice == 5 and cups != -1) {
 			cout << "1 - PIN input" << endl;
 			cout << "2 - Back to Main menu" << endl;
 			cin >> pinMenuChoice;
@@ -122,10 +127,10 @@ int main()
 	return 0;
 }
 
-void showMainMenu(int customerBalance)
+void showMainMenu(double customerBalance)
 {
-	cout << "Balance: " << customerBalance << endl;
-	cout << "1 - Deposit money" << endl << "2 - Espresso - 1 BYN" << endl << "3 - Cappuccino - 1.5 BYN" << endl << "4 - Latte - 1.5 BYN"<< endl <<  "5 - Service menu";
+	cout << "Balance: " << customerBalance << " BYN" << endl;
+	cout << "1 - Deposit money" << endl << "2 - Espresso       1 BYN" << endl << "3 - Cappuccino   1.5 BYN" << endl << "4 - Latte        1.5 BYN"<< endl <<  "5 - Service menu" << endl << "Choose: ";
 }
 
 double customerBalanceAdding()
@@ -133,7 +138,7 @@ double customerBalanceAdding()
 	double balance = 0.0;
 	int userChoise = 0;
 
-	cout << "Please deposit coins. Pay attention that the coffee machine doesn’t give change" << endl;
+	cout << "Please deposit coins. Pay attention that the coffee machine doesn't give change" << endl;
 	cout << "1 - 10 coins" << endl << "2 - 20 coins" << endl << "3 - 50 coins" << endl << "4 - 1 BYN" << endl << "5 - 2 BYN" << endl;
 
 	while (userChoise == 0)
@@ -178,13 +183,13 @@ double customerBalanceAdding()
 void coffeeMaking(string coffee)
 {
 	int count = 0;
-	cout << "Wait your coffee, please" << endl << endl;
+	cout << "Wait a second, please" << endl << endl;
 	for (count; count < 30; ++count) {
 		cout << "#";
 		Sleep(130);
 	}
 	cout << endl << endl;
-	cout << "Here is your "<< coffee << endl << endl;
+	cout << "Here is the best "<< coffee << " in the city!" << endl << "Take it, please" << endl << endl;
 }
 
 bool IsPIN(int pin)
