@@ -8,6 +8,7 @@
 using namespace std;
 
 void showMainMenu(double customerBalance);
+void showShortMenu(double customerBalance);
 double customerBalanceAdding();
 void coffeeMaking(string coffee);
 bool IsPIN(int pin);
@@ -27,60 +28,60 @@ int main()
 
 	while (true) {
 		cout << endl;
-		showMainMenu(customerBalance);
+		if(cups == 0){
+			showShortMenu(customerBalance);
+		}
+		else {
+			showMainMenu(customerBalance);
+		}
 		cin >> mainMenuChoice; 
 		cout << endl;
-		if (cups == 0 and (mainMenuChoice == 1 or mainMenuChoice == 2 or mainMenuChoice == 3 or mainMenuChoice == 4)) {
-			cout << "We are sorry but unfortunately there are no cups left" << endl;
+		if (mainMenuChoice == 1) {
+			balanceAdding = customerBalanceAdding();
+			customerBalance += balanceAdding;
+			machineBalance += balanceAdding;
 		}
-		else if (cups > 0 and (mainMenuChoice == 1 or mainMenuChoice == 2 or mainMenuChoice == 3 or mainMenuChoice == 4)) {
-			if (mainMenuChoice == 1) {
+		else if (mainMenuChoice == 2) {
+			if (customerBalance < ESPRESSO) {
+			balanceAdding = customerBalanceAdding();
+			customerBalance += balanceAdding;
+			machineBalance += balanceAdding;
+			cups--;
+			}
+			else {
+				coffee = "Espresso";
+				coffeeMaking(coffee);
+				customerBalance -= ESPRESSO;
+				cups--;
+			}
+		}
+		else if (mainMenuChoice == 3) {
+			if (customerBalance < CAPPUCCINO) {
 				balanceAdding = customerBalanceAdding();
 				customerBalance += balanceAdding;
 				machineBalance += balanceAdding;
 			}
-			else if (mainMenuChoice == 2) {
-				if (customerBalance < ESPRESSO) {
-					balanceAdding = customerBalanceAdding();
-					customerBalance += balanceAdding;
-					machineBalance += balanceAdding;
-					cups--;
-				}
-				else {
-					coffee = "Espresso";
-					coffeeMaking(coffee);
-					customerBalance -= ESPRESSO;
-					cups--;
-				}
-			}
-			else if (mainMenuChoice == 3) {
-				if (customerBalance < CAPPUCCINO) {
-					balanceAdding = customerBalanceAdding();
-					customerBalance += balanceAdding;
-					machineBalance += balanceAdding;
-				}
-				else {
-					coffee = "Cappuccino";
-					coffeeMaking(coffee);
-					customerBalance -= CAPPUCCINO;
-					cups--;
-				}
-			}
-			else if (mainMenuChoice == 4) {
-				if (customerBalance < LATTE) {
-					balanceAdding = customerBalanceAdding();
-					customerBalance += balanceAdding;
-					machineBalance += balanceAdding;
-				}
-				else {
-					coffee = "Latte";
-					coffeeMaking(coffee);
-					customerBalance -= LATTE;
-					cups--;
-				}
+			else {
+				coffee = "Cappuccino";
+				coffeeMaking(coffee);
+				customerBalance -= CAPPUCCINO;
+				cups--;
 			}
 		}
-		else if (mainMenuChoice == 5 and cups != -1) {
+		else if (mainMenuChoice == 4) {
+			if (customerBalance < LATTE) {
+				balanceAdding = customerBalanceAdding();
+				customerBalance += balanceAdding;
+				machineBalance += balanceAdding;
+			}
+			else {
+				coffee = "Latte";
+				coffeeMaking(coffee);
+				customerBalance -= LATTE;
+				cups--;
+			}
+		}
+		else if (mainMenuChoice == 5) {
 			cout << "1 - PIN input" << endl;
 			cout << "2 - Back to Main menu" << endl;
 			cin >> pinMenuChoice;
@@ -131,6 +132,12 @@ void showMainMenu(double customerBalance)
 {
 	cout << "Balance: " << customerBalance << " BYN" << endl;
 	cout << "1 - Deposit money" << endl << "2 - Espresso       1 BYN" << endl << "3 - Cappuccino   1.5 BYN" << endl << "4 - Latte        1.5 BYN"<< endl <<  "5 - Service menu" << endl << "Choose: ";
+}
+void showShortMenu(double customerBalance)
+{
+	cout << "Balance: " << customerBalance << " BYN" << endl;
+	cout << "We are sorry but unfortunately there are no cups left" << endl;
+	cout << "5 - Service menu" << endl << "Choose: ";
 }
 
 double customerBalanceAdding()
