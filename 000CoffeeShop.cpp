@@ -1,6 +1,6 @@
 #include <iostream>
 #include "windows.h"
-#define PIN 1234
+#define PIN 8211
 #define ESPRESSO 1
 #define CAPPUCCINO 1.5
 #define LATTE 1.5
