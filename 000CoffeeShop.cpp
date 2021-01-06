@@ -11,6 +11,7 @@ void showMainMenu(double customerBalance);
 void showShortMenu(double customerBalance);
 double customerBalanceAdding();
 void coffeeMaking(string coffee);
+int pinOrBackMenu();
 bool IsPIN(int pin);
 void serviceMenu(double machineBalance, int cups);
 int cupsAdding(int cups);
@@ -83,8 +84,7 @@ int main()
 			}
 		}
 		else if (mainMenuChoice == 5) {
-			cout << "1 - PIN input" << endl;
-			cout << "2 - Back to Main menu" << endl;
+			pinOrBackMenu();
 			cin >> pinMenuChoice;
 			while (true) {
 				if (pinMenuChoice == 1) {
@@ -131,7 +131,7 @@ int main()
 
 void showMainMenu(double customerBalance)
 {
-	cout << "Balance: " << customerBalance << " BYN" << endl;
+	cout << "Balance: " << customerBalance << " BYN" << endl << endl;
 	cout << "|1| - Deposit money" << endl;
 	cout << "|2| - Espresso       1 BYN" << endl;
 	cout << "|3| - Cappuccino   1.5 BYN" << endl;
@@ -206,12 +206,18 @@ void coffeeMaking(string coffee)
 {
 	int count = 0;
 	cout << "Wait a second, please" << endl << endl;
-	for (count; count < 30; ++count) {
+	for (count; count < 20; ++count) {
 		cout << "#";
 		Sleep(130);
 	}
 	cout << endl << endl;
 	cout << "Here is the best " << coffee << " in the city!" << endl << "Take it, please" << endl << endl;
+}
+
+int pinOrBackMenu()
+{
+	cout << "1 - PIN input" << endl;
+	cout << "2 - Back to Main menu" << endl;
 }
 
 bool IsPIN(int pin)
