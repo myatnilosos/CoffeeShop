@@ -11,7 +11,7 @@ void showMainMenu(double customerBalance);
 void showShortMenu(double customerBalance);
 double customerBalanceAdding();
 void coffeeMaking(string coffee);
-int pinOrBackMenu();
+void pinOrBackMenu();
 bool IsPIN(int pin);
 void serviceMenu(double machineBalance, int cups);
 int cupsAdding(int cups);
@@ -214,7 +214,7 @@ void coffeeMaking(string coffee)
 	cout << "Here is the best " << coffee << " in the city!" << endl << "Take it, please" << endl << endl;
 }
 
-int pinOrBackMenu()
+void pinOrBackMenu()
 {
 	cout << "1 - PIN input" << endl;
 	cout << "2 - Back to Main menu" << endl;
